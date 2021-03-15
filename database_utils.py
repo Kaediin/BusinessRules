@@ -61,6 +61,10 @@ def fill_recommendations(product_id, recs):
 def fill_table_with_all_recs(limit_recs=4):
     # open de connectie
     open_db_connection()
+
+    # Maak schema aan
+    create_schema_standard_recs()
+
     # Haal alle producten op die een sub_sub_categorie hebben. (anders kunnen we niet matchen want er is geen categorie die duidelijk genoeg is)
     try:
         cursor.execute("select p.product_id, pc.sub_sub_category from products p inner join product_categories pc on pc.product_id = p.product_id where sub_sub_category is not null;")
@@ -78,8 +82,6 @@ def fill_table_with_all_recs(limit_recs=4):
         if counter == 1 or counter == len(all_product_ids) or counter % 1000 == 0:
             print(f"Progress: {counter}/{len(all_product_ids)}")
 
-        # Maak schema aan
-        create_schema_standard_recs()
         # Haal recommendations op (o.b.v sub_sub_categorie)
         recs = retrieve_recommendations(product_id, list_limit=limit_recs)
         # Stop ze in de database

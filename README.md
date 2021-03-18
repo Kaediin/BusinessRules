@@ -30,3 +30,5 @@ Voor deze opdracht heb ik een regel gemaakt die een bepaald product matched met 
   
 ### Stap 6:
   Database connectie sluiten.
+  
+  In het bestand 'BusinessRules.csv' staat het resultaat van deze rules. Dit kan geopend worden in excel
